@@ -1,43 +1,61 @@
-import { useState } from "react"
-import "./Counter.css"
+import { useEffect, useState } from 'react';
 
-export default function Counter(){
-    let [count ,setcount ]=useState(0);
-    let [count2,setcount2]=useState(0);
-    console.log(count)
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
+  console.log(count);
+//    console.log(count2)
 
-    function incrCount(){
-        setcount(count + 1);
+
+  const incrementCount = () => {
+      setCount(count + 1);
+  };
+
+  const decrementCount = () => {
+      setCount(count - 1);
+  };
+
+  const incrementCount2 = () => {
+      setCount2(count2 + 2);
+  };
+
+  const decrementCount2 = () => {
+      setCount2(count2 - 2);
+  };
+
+  useEffect(()=>{
+    console.log("only callback function: Everytime");
+  })
+
+  useEffect(()=>{
+    console.log("callback function with empty array : 1st time load");
+  })
+
+  useEffect(()=>{
+    console.log("callback  with state arrya : count's state change");
+  },[count]);
+
+  useEffect(()=>{
+    return()=>{
+      console.log("callback with return: component unmount");
     }
+  },[])
 
-    function decCount(){
-        setcount(count - 1);
-    }
-
-    function incrCount2(){
-        setcount2(count2 + 2);
-    }
-
-    function decCount2(){
-        setcount2(count2 - 2);
-    }
-
-    
-
-    return(
-        <>
-        <section className="counter">
-            <h1>Count 1</h1>
-            <button onClick={incrCount}>Incr count</button>
-            <h1>{count}</h1>
-            <button onClick={decCount}>Dec count</button>
-        </section>
-        <section className="counter">
-            <h1>Count 2</h1>
-            <button onClick={incrCount2}>Incr count</button>
-            <h1>{count2}</h1>
-            <button onClick={decCount2}>Dec count</button>
-        </section>
-        </>
-    )
+  return (
+    <>
+    <div>
+      <button onClick={incrementCount}>Increment</button>
+      <p>Count: {count}</p>
+      <button onClick={decrementCount}>Decrement</button>
+    </div>
+    <br /><br />
+    <div>
+      <button onClick={incrementCount2}>Increment</button>
+      <p>Count: {count2}</p>
+      <button onClick={decrementCount2}>Decrement</button>
+    </div>
+    </>
+  );
 }
+
+export default MyComponent;

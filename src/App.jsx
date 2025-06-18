@@ -1,26 +1,25 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import './App.css'
-import Counter from './Componenets/Counter'
+import Counter from './Componenets/Counter';
 
 function App() {
 
-  let [flag, setFlag] = useState(false);
+  let [flag,setflag]=useState(false);
+  // console.log(flag)
 
-  const changeflag = () => {
-    setFlag(!flag);
+  const Changflag =()=>{
+    setflag(!flag);
   }
-  // console.log(" changeflag")
+  // console.log(Changflag)
 
   return (
-    <div>
-      <h1>React Life Cycle{input}</h1>
-      <form>
-        <input type="text"/>
-      </form>
-      <button onClick={changeflag}>Toggel data</button>
-      { flag? <Counter/> : null }
-    </div>
+    <>
+    <h1>React life Cycle</h1>
+    <button onClick={Changflag}>ToggelBtn</button>
+    <hr />
+    {flag? <Counter/> : null}
+    </>
   )
 }
 
-      export default App;
+export default App;
